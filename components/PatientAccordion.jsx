@@ -9,7 +9,7 @@ export default function PatientAccordion({ patient }) {
     <View style={styles.card}>
       <TouchableOpacity
         onPress={() => setExpanded(!expanded)}
-        style={styles.patient}
+        style={styles.header}
       >
         <View style={styles.profileIamgeContainer}>
           {patient.profileImage ? (
@@ -18,7 +18,7 @@ export default function PatientAccordion({ patient }) {
               style={styles.avatar}
             />
           ) : (
-            <Text style={styles.avatarText}>👩‍💼</Text>
+            <Text style={styles.avatarText}>👤</Text>
           )}
         </View>
         <View style={styles.textContainer}>
@@ -34,9 +34,9 @@ export default function PatientAccordion({ patient }) {
 
       {expanded && (
         <View style={styles.body}>
-          <Text style={styles.basicDetails}>
+            <Text style={styles.basicDetails}>
             Basic Pateint Details
-          </Text>
+            </Text>
           <Text style={styles.label}>Full Name: {patient.name}</Text>
           <Text style={styles.label}>
             Age: {patient.age} (DOB: {patient.dob})
@@ -72,50 +72,43 @@ export default function PatientAccordion({ patient }) {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: "##dcdfe0",
-    // backgroundColor: "pink",
-    borderColor: "#f1f2f4",
     marginBottom: 12,
     borderRadius: 8,
-    borderWidth: 2, 
-    borderCurve:1,
     padding: 12,
   },
-  patient: {
+  header: {
     flexDirection: "row",
     justifyContent: " left",
     alignItems: "center",
-    // backgroundColor: 'red'
-
   },
   profileIamgeContainer: {
-    width: 60,
-    height: 60,
-    justifyContent: "flex-end",
+    width: 50,
+    height: 50,
+    borderColor: "#28c1a5",
+    borderWidth: 1,
+    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#28c1a50D",
-    borderWidth: 2,
     borderRadius: "50%",
-    borderColor: "#28c1a5CC",
     overflow: "hidden",
+    backgroundColor: "#28c1a521",
   },
 
-  avatar: { width: 60, height: 60, borderRadius: 20 },
-  avatarText: { fontSize: 40, marginBottom: -5, },
+  avatar: { width: 40, height: 40, borderRadius: 20 },
+  avatarText: { fontSize: 32 },
 
   textContainer: {
     flexDirection: "col",
-    marginLeft: 7,
+    marginLeft: 5,
   },
   dropdownArrow: {
     marginLeft: "auto",
-    
   },
 
   name: { fontSize: 16, fontWeight: "bold" },
   sub: { fontSize: 14, color: "#555" },
   body: { marginTop: 10 },
-  basicDetails: {
-    fontSize: 18,
+  basicDetails:{
+    fontSize:18,
     fontWeight: 600,
     color: '#28c1a5',
   },
