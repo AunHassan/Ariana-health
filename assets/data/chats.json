@@ -1,0 +1,56 @@
+{
+  "conversations": [
+    {
+      "id": "c1",
+      "title": "Health: Fever",
+      "messages": [
+        {
+          "id": "m1",
+          "from": "bot",
+          "text": "Hello! I'm your AI health assistant. What symptoms are you experiencing today?"
+        },
+        {
+          "id": "m2",
+          "from": "user",
+          "userProfile": "A",
+          "text": "I have headaches for 2 days"
+        },
+        {
+          "id": "m3",
+          "from": "bot",
+          "text": "I understand. Can you describe the pain? Is it throbbing, sharp, or dull? And on which side of your head?"
+        },
+        {
+          "id": "m4",
+          "from": "user",
+          "userProfile": "A",
+          "text": "Throbbing pain on right side"
+        },
+        {
+          "id": "m5",
+          "from": "bot",
+          "text": "Thanks. On scale 1-10, how intense is the pain? Any nausea or sensitivity to light?"
+        }
+      ],
+      "lastUpdated": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": "c2",
+      "title": "Nutrition Advice",
+      "messages": [
+        {
+          "id": "m1",
+          "from": "user",
+          "text": "What should I eat after a workout?"
+        },
+        {
+          "id": "m2",
+          "from": "bot",
+          "userProfile": "N",
+          "text": "Protein and carbs help recovery. Try yogurt and banana."
+        }
+      ],
+      "lastUpdated": "2025-01-09T08:30:00Z"
+    }
+  ]
+}
