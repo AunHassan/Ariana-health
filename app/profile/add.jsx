@@ -1,108 +1,6 @@
-// import React, { useState } from "react";
-// import {
-//   View,
-//   Text,
-//   TextInput,
-//   Button,
-//   StyleSheet,
-//   ScrollView,
-// } from "react-native";
-// import { useRouter } from "expo-router";
-
-// export default function AddPatientForm() {
-//   const router = useRouter();
-//   const [form, setForm] = useState({
-//     name: "",
-//     dob: "",
-//     gender: "",
-//     contact: "",
-//     email: "",
-//     address: "",
-//     emergencyName: "",
-//     emergencyPhone: "",
-//     bloodGroup: "",
-//     allergies: "",
-//     conditions: "",
-//     medications: "",
-//     history: "",
-//     familyHistory: "",
-//     visitDate: new Date().toISOString().split("T")[0],
-//     visitCause: "",
-//     doctorNotes: "",
-//   });
-
-//   const handleChange = (key, value) => {
-//     setForm({ ...form, [key]: value });
-//   };
-
-//   const handleSubmit = () => {
-//     console.log("Submit patient:", form);
-//     // TODO: append to profile.json or DB later
-//     router.back();
-//   };
-
-//   return (
-//     <ScrollView style={styles.container}>
-//       <Text style={styles.title}>Add Patient</Text>
-
-//       <TextInput
-//         placeholder="Full Name"
-//         style={styles.input}
-//         value={form.name}
-//         onChangeText={(v) => handleChange("name", v)}
-//       />
-//       <TextInput
-//         placeholder="Date of Birth (YYYY-MM-DD)"
-//         style={styles.input}
-//         value={form.dob}
-//         onChangeText={(v) => handleChange("dob", v)}
-//       />
-//       <TextInput
-//         placeholder="Gender"
-//         style={styles.input}
-//         value={form.gender}
-//         onChangeText={(v) => handleChange("gender", v)}
-//       />
-//       <TextInput
-//         placeholder="Contact Number"
-//         style={styles.input}
-//         value={form.contact}
-//         onChangeText={(v) => handleChange("contact", v)}
-//       />
-
-//       <TextInput
-//         placeholder="Email"
-//         style={styles.input}
-//         value={form.email}
-//         onChangeText={(v) => handleChange("email", v)}
-//       />
-
-//       <TextInput
-//         placeholder="Address"
-//         style={[styles.input, { height: 80 }]}
-//         value={form.address}
-//         onChangeText={(v) => handleChange("address", v)}
-//         multiline
-//       />
-
-//       <Button title="Submit" onPress={handleSubmit} />
-//     </ScrollView>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: { flex: 1, padding: 16, backgroundColor: "#fff" },
-//   title: { fontSize: 18, fontWeight: "bold", marginBottom: 12 },
-//   input: {
-//     borderWidth: 1,
-//     borderColor: "#ccc",
-//     borderRadius: 6,
-//     padding: 10,
-//     marginBottom: 12,
-//   },
-// });
-
 import React, { useState } from "react";
+import styled from "styled-components/native";
+
 import {
   View,
   Text,
@@ -114,8 +12,13 @@ import {
 import { Picker } from "@react-native-picker/picker";
 import { useRouter } from "expo-router";
 
+
+
+
 export default function AddPatientForm() {
+
   const router = useRouter();
+
   const [form, setForm] = useState({
     name: "",
     dob: "",
@@ -146,35 +49,73 @@ export default function AddPatientForm() {
     router.back();
   };
 
+  const InputWrap = styled(View)`
+  background-color: ${(props) => (props.primary ? "#28c1a5" : "transparent")};
+  border-radius: 8px;
+  margin-bottom: 12px;
+`;
+
+  const Label = styled(Text)`
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: 600;
+`;
+
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Add Patient</Text>
 
       {/* Basic Info */}
-      <TextInput
-        placeholder="Full Name"
-        style={styles.input}
-        value={form.name}
-        onChangeText={(v) => handleChange("name", v)}
-      />
-      <TextInput
-        placeholder="Date of Birth (YYYY-MM-DD)"
-        style={styles.input}
-        value={form.dob}
-        onChangeText={(v) => handleChange("dob", v)}
-      />
+      <InputWrap >
+        <Label>Full Name:</Label>
+        <TextInput
+          placeholder="Shehbaz Sharif"
+          style={styles.input}
+          value={form.name}
+          onChangeText={(v) => handleChange("name", v)}
+        />
+      </InputWrap>
 
-      <Text style={styles.label}>Gender</Text>
-      <View style={styles.pickerWrapper}>
+      <InputWrap >
+        <Label>Date Of Birth:</Label>
+        <TextInput
+          placeholder="September 23, 1951"
+          style={styles.input}
+          value={form.dob}
+          onChangeText={(v) => handleChange("dob", v)}
+        />
+      </InputWrap>
+
+      <InputWrap >
+        <Label>Gender</Label>
         <Picker
+          style={styles.picker}
           selectedValue={form.gender}
           onValueChange={(v) => handleChange("gender", v)}
         >
-          <Picker.Item label="Male" value="Male" />
-          <Picker.Item label="Female" value="Female" />
-          <Picker.Item label="Other" value="Other" />
+          <Picker.Item
+            style={styles.select}
+            label="Male" value="Male" />
+          <Picker.Item
+            style={styles.select}
+            label="Female" value="Female" />
+          <Picker.Item
+            style={styles.select}
+            label="Other" value="Other" />
         </Picker>
-      </View>
+      </InputWrap>
+
+      <InputWrap >
+        <Label>Date Of Birth:</Label>
+        <TextInput
+          placeholder="September 23, 1951"
+          style={styles.input}
+          value={form.dob}
+          onChangeText={(v) => handleChange("dob", v)}
+        />
+      </InputWrap>
+
 
       <TextInput
         placeholder="Contact Number"
@@ -297,10 +238,9 @@ const styles = StyleSheet.create({
   label: { marginTop: 8, fontWeight: "bold" },
   input: {
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "#f1f2f4",
     borderRadius: 6,
     padding: 10,
-    marginBottom: 12,
   },
   pickerWrapper: {
     borderWidth: 1,
