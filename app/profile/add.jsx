@@ -12,17 +12,16 @@ import {
 import { Picker } from "@react-native-picker/picker";
 import { useRouter } from "expo-router";
 
-
-
-
 export default function AddPatientForm() {
-
   const router = useRouter();
 
   const [form, setForm] = useState({
-    name: "",
+    first_name: "",
+    last_name: "",
     dob: "",
     gender: "Male",
+    relation: "Mother",
+    otherRelation: "",
     contact: "",
     email: "",
     address: "",
@@ -50,34 +49,43 @@ export default function AddPatientForm() {
   };
 
   const InputWrap = styled(View)`
-  background-color: ${(props) => (props.primary ? "#28c1a5" : "transparent")};
-  border-radius: 8px;
-  margin-bottom: 12px;
-`;
+    background-color: ${(props) => (props.primary ? "#28c1a5" : "transparent")};
+    border-radius: 8px;
+    margin-bottom: 12px;
+  `;
 
   const Label = styled(Text)`
-  font-size: 14px;
-  margin-bottom: 5px;
-  font-weight: 600;
-`;
-
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: 600;
+  `;
 
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Add Patient</Text>
 
       {/* Basic Info */}
-      <InputWrap >
-        <Label>Full Name:</Label>
+      <InputWrap>
+        <Label>First Name:</Label>
         <TextInput
-          placeholder="Shehbaz Sharif"
+          placeholder="Shehbaz"
           style={styles.input}
-          value={form.name}
-          onChangeText={(v) => handleChange("name", v)}
+          value={form.first_name}
+          onChangeText={(v) => handleChange("first_name", v)}
         />
       </InputWrap>
 
-      <InputWrap >
+      <InputWrap>
+        <Label>Last Name:</Label>
+        <TextInput
+          placeholder="Sharif"
+          style={styles.input}
+          value={form.last_name}
+          onChangeText={(v) => handleChange("last_name", v)}
+        />
+      </InputWrap>
+
+      <InputWrap>
         <Label>Date Of Birth:</Label>
         <TextInput
           placeholder="September 23, 1951"
@@ -87,71 +95,114 @@ export default function AddPatientForm() {
         />
       </InputWrap>
 
-      <InputWrap >
-        <Label>Gender</Label>
+      <InputWrap>
+        <Label>Gender:</Label>
         <Picker
           style={styles.picker}
           selectedValue={form.gender}
           onValueChange={(v) => handleChange("gender", v)}
         >
-          <Picker.Item
-            style={styles.select}
-            label="Male" value="Male" />
-          <Picker.Item
-            style={styles.select}
-            label="Female" value="Female" />
-          <Picker.Item
-            style={styles.select}
-            label="Other" value="Other" />
+          <Picker.Item style={styles.select} label="Male" value="Male" />
+          <Picker.Item style={styles.select} label="Female" value="Female" />
+          <Picker.Item style={styles.select} label="Other" value="Other" />
         </Picker>
       </InputWrap>
 
-      <InputWrap >
-        <Label>Date Of Birth:</Label>
+      <InputWrap>
+        <Label>Relation:</Label>
+        <Picker
+          style={styles.picker}
+          selectedValue={form.relation}
+          onValueChange={(v) => handleChange("relation", v)}
+        >
+          <Picker.Item style={styles.select} label="Mother" value="Mother" />
+          <Picker.Item style={styles.select} label="Father" value="Father" />
+          <Picker.Item style={styles.select} label="Brother" value="Brother" />
+          <Picker.Item style={styles.select} label="Sister" value="Sister" />
+          <Picker.Item style={styles.select} label="Spouse" value="Spouse" />
+          <Picker.Item style={styles.select} label="Son" value="Son" />
+          <Picker.Item
+            style={styles.select}
+            label="Daughater"
+            value="Daughater"
+          />
+          <Picker.Item style={styles.select} label="Other" value="Other" />
+        </Picker>
+      </InputWrap>
+
+      <InputWrap>
+        <Label>Contact Number:</Label>
         <TextInput
-          placeholder="September 23, 1951"
+          placeholder="0300 0001112"
           style={styles.input}
-          value={form.dob}
-          onChangeText={(v) => handleChange("dob", v)}
+          value={form.contact}
+          onChangeText={(v) => handleChange("contact", v)}
         />
       </InputWrap>
 
-
-      <TextInput
+      {/* <TextInput
         placeholder="Contact Number"
         style={styles.input}
         value={form.contact}
         onChangeText={(v) => handleChange("contact", v)}
-      />
-      <TextInput
+      /> */}
+
+      <InputWrap>
+        <Label>Email:</Label>
+        <TextInput
+          placeholder="username@gmail.com"
+          style={styles.input}
+          value={form.email}
+          onChangeText={(v) => handleChange("email", v)}
+        />
+      </InputWrap>
+      {/* <TextInput
         placeholder="Email"
         style={styles.input}
         value={form.email}
         onChangeText={(v) => handleChange("email", v)}
-      />
+      /> */}
 
-      <TextInput
+      <InputWrap>
+        <Label>Address</Label>
+        <TextInput
+          placeholder="Address"
+          style={[styles.input, { height: 80 }]}
+          value={form.address}
+          onChangeText={(v) => handleChange("address", v)}
+          multiline
+        />
+      </InputWrap>
+
+      {/* <TextInput
         placeholder="Address"
         style={[styles.input, { height: 80 }]}
         value={form.address}
         onChangeText={(v) => handleChange("address", v)}
         multiline
-      />
+      /> */}
 
-      <TextInput
-        placeholder="Emergency Contact Name"
-        style={styles.input}
-        value={form.emergencyName}
-        onChangeText={(v) => handleChange("emergencyName", v)}
-      />
-      <TextInput
-        placeholder="Emergency Contact Phone"
-        style={styles.input}
-        value={form.emergencyPhone}
-        onChangeText={(v) => handleChange("emergencyPhone", v)}
-      />
+      <InputWrap>
+        <Label>Emergency Contact Name</Label>
+        <TextInput
+          placeholder="Asim Munir"
+          style={styles.input}
+          value={form.emergencyName}
+          onChangeText={(v) => handleChange("emergencyName", v)}
+        />
+      </InputWrap>
 
-      <Text style={styles.label}>Blood Group</Text>
+      <InputWrap>
+        <Label>Emergency Contact Phone:</Label>
+        <TextInput
+          placeholder="General Asim Munir"
+          style={styles.input}
+          value={form.emergencyPhone}
+          onChangeText={(v) => handleChange("emergencyPhone", v)}
+        />
+      </InputWrap>
+
+      <Label>Blood Group:</Label>
       <View style={styles.pickerWrapper}>
         <Picker
           selectedValue={form.bloodGroup}
@@ -167,6 +218,24 @@ export default function AddPatientForm() {
           <Picker.Item label="O−" value="O−" />
         </Picker>
       </View>
+
+      {/* <InputWrap>
+        <Label>Blood Group:</Label>
+        <Picker
+          selectedValue={form.bloodGroup}
+          onValueChange={(v) => handleChange("bloodGroup", v)}
+        >
+          <Picker.Item label="A+" value="A+" />
+          <Picker.Item label="A−" value="A−" />
+          <Picker.Item label="B+" value="B+" />
+          <Picker.Item label="B−" value="B−" />
+          <Picker.Item label="AB+" value="AB+" />
+          <Picker.Item label="AB−" value="AB−" />
+          <Picker.Item label="O+" value="O+" />
+          <Picker.Item label="O−" value="O−" />
+          <Picker.Item label="Don't Know" value="Don't Know" />
+        </Picker>
+      </InputWrap> */}
 
       {/* Medical Info */}
       <TextInput

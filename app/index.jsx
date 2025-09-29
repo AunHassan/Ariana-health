@@ -12,13 +12,13 @@ export default function Index() {
       title: "Talk to AI Doctor",
       icon: "📆",
       desc: "Instant health assessment",
-      onPress: () => router.push("/appointments"),
+      onPress: () => router.push("/assistant"),
     },
     {
       title: "Book Video Call",
       icon: "📹",
       desc: "Consult real doctors",
-      onPress: () => router.push("/assistant"),
+      onPress: () => router.push("/appointments"),
     },
     {
       title: "Home Care visit",
